@@ -27,7 +27,7 @@ namespace cll = llvm::cl;
 constexpr static const float DAMPING        = 0.85;
 constexpr static const float EPSILON        = 1.0e-2;
 constexpr static const float EPSILON2       = 1.0e-7;
-constexpr static const unsigned MAX_ITER    = 1000;
+constexpr static const unsigned MAX_ITER    = 3;
 
 static cll::opt<float>
         damping("damping", cll::desc("damping"),

@@ -1,0 +1,25 @@
+Number of threads: 49 (Compute 48, IO 1)
+V:      1073741823 (261008353, 24.3%)
+E:     17179869184
+V:      1073741823 (404045883, 37.6%)
+E:     17179869184
+bin width: 1024 kB
+bin size: 256 MB = 1024 * 256 kB bins
+buffer size: 50176 KB
+# EDGEMAP    1 :    261008353 nodes     dense,  17179869184 edges,  68719476736 bytes, 37.04875 sec, 37.03410 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    2 :    217257996 nodes     dense,  16433122276 edges,  68717985792 bytes, 36.95344 sec, 36.94084 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    3 :    259331322 nodes     dense,  17178178022 edges,  68719476736 bytes, 36.93056 sec, 36.91719 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    4 :    217254184 nodes     dense,  16433118426 edges,  68717985792 bytes, 36.95287 sec, 36.94042 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    5 :         6737 nodes    sparse,         6833 edges,     27590656 bytes,  0.03228 sec,  0.03124 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    6 :         3294 nodes    sparse,         3324 edges,     13512704 bytes,  0.01880 sec,  0.01785 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    7 :            1 nodes    sparse,            1 edges,         4096 bytes,  0.00023 sec,  0.00011 sec (bin: 1.29, acc: 1.12) (io: 1.00)
+Total components: 1073741823
+Number of non-trivial components: 74458 (largest component: 0, size: 445977603 [0.42])
+# IO SUMMARY    : 274916032512 bytes, 147.88175 sec, 1.73 GB/s
+# SUMMARY       : 67224298066 edges accessed.
+MemoryCounter: 3144 MB -> 46396 MB, 43252 MB total
+STAT_TYPE, REGION, CATEGORY, TOTAL_TYPE, TOTAL
+STAT, CountLargest, Iterations, TSUM, 1073741823
+STAT, CountLargest, Time, TMAX, 53043
+STAT, WCC_MAIN, Time, TMAX, 165428
+Bytes read: -1024

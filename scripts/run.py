@@ -26,10 +26,10 @@ def exec_cmd(cmd, ignore_exception=False, dry=False):
     return p
 
 def get_index_file_name(disks, dataset, data_format):
-    return "{0}/{1}.{2}.index".format(disks[0], dataset, data_format)
+    return "{0}/{1}/{2}.{3}.index".format(disks[0], dataset, dataset, data_format)
 
 def get_adj_file_names(disks, dataset, data_format):
-    return ["{0}/{1}.{2}.adj.{3}.{4}".format(disk, dataset, data_format, len(disks), i) for i, disk in enumerate(disks)]
+    return ["{0}/{1}/{2}.{3}.adj.{4}".format(disk, dataset, dataset, data_format, i) for i, disk in enumerate(disks)]
 
 def build_command(args, data_format):
     cmd = BLAZE_BINARY_PATH + "/" + args.kernel
@@ -60,8 +60,8 @@ def get_read_bytes_from_iostat(filename):
         for line in lines:
             words = line.split()
             if not words: continue
-            if words[0] == 'nvme0n1':
-                return int(words[4])
+            if words[0] == 'nvme2n1':
+                return int(float(words[4]))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Arguments for running FastGraph")
@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
     # Collect IO stat log
     os.system(f'iostat -m -d 1 > {result_file}.iostat &')
-
+    print(cmd)
     # Run workload
     exec_cmd(cmd)
 

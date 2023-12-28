@@ -1,7 +1,8 @@
-FROM ubuntu:18.04 
+FROM ubuntu:20.04 
+ARG DEBIAN_FRONTEND=noninteractive
 
-ARG PROJECT_HOME=/home/blaze
-ARG DATASET_HOME=/mnt/nvme
+ARG PROJECT_HOME=/home/zorax/GraphSSD/blaze
+ARG DATASET_HOME=/mnt/nvme1/blaze
 ARG BLAZE_BUILD_TYPE=Release
 ARG NUM_CORES=16
 

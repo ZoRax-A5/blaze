@@ -1,0 +1,27 @@
+Number of threads: 49 (Compute 48, IO 1)
+V:       536870909 (136098239, 25.4%)
+E:      8589934592
+bin width: 512 kB
+bin size: 256 MB = 1024 * 256 kB bins
+buffer size: 50176 KB
+# EDGEMAP    1 :            1 nodes    sparse,           34 edges,         4096 bytes,  0.01560 sec,  0.00032 sec (bin: 1.27, acc: 16.30) (io: 1.00)
+# EDGEMAP    2 :           29 nodes    sparse,        66647 edges,       380928 bytes,  0.01375 sec,  0.00090 sec (bin: 3.48, acc: 2.09) (io: 1.00)
+# EDGEMAP    3 :        59956 nodes     dense,    119112387 edges,    719368192 bytes,  0.47971 sec,  0.41187 sec (bin: 1.02, acc: 1.00) (io: 1.00)
+# EDGEMAP    4 :     21827781 nodes     dense,   1702525069 edges,  18783948800 bytes, 10.22400 sec, 10.12702 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    5 :     37597470 nodes     dense,    553108398 edges,  17059680256 bytes,  9.39730 sec,  9.24845 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    6 :      5378236 nodes     dense,     56242053 edges,  11194126336 bytes,  6.51927 sec,  6.50575 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    7 :       526790 nodes    sparse,      7942480 edges,   2017013760 bytes,  2.02695 sec,  2.02071 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    8 :        86044 nodes    sparse,      2074502 edges,    356306944 bytes,  0.36953 sec,  0.36475 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP    9 :        23689 nodes    sparse,       604223 edges,     99217408 bytes,  0.10602 sec,  0.10181 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP   10 :         6885 nodes    sparse,       152922 edges,     28803072 bytes,  0.03504 sec,  0.03094 sec (bin: 1.00, acc: 1.00) (io: 1.00)
+# EDGEMAP   11 :         1722 nodes    sparse,        33083 edges,      7168000 bytes,  0.01282 sec,  0.00872 sec (bin: 1.01, acc: 1.01) (io: 1.00)
+# EDGEMAP   12 :          358 nodes    sparse,         4821 edges,      1490944 bytes,  0.00606 sec,  0.00202 sec (bin: 1.04, acc: 1.01) (io: 1.00)
+# EDGEMAP   13 :           45 nodes    sparse,          694 edges,       188416 bytes,  0.00444 sec,  0.00044 sec (bin: 1.05, acc: 1.02) (io: 1.00)
+# EDGEMAP   14 :            4 nodes    sparse,           17 edges,        16384 bytes,  0.00419 sec,  0.00012 sec (bin: 1.09, acc: 1.02) (io: 1.00)
+# EDGEMAP   15 :            1 nodes    sparse,            1 edges,         4096 bytes,  0.00416 sec,  0.00009 sec (bin: 1.07, acc: 1.02) (io: 1.00)
+# IO SUMMARY    : 50267717632 bytes, 28.82391 sec, 1.62 GB/s
+# SUMMARY       : 2441867331 edges accessed.
+MemoryCounter: 3146 MB -> 8364 MB, 5218 MB total
+STAT_TYPE, REGION, CATEGORY, TOTAL_TYPE, TOTAL
+STAT, BFS_MAIN, Time, TMAX, 31019
+Bytes read: 0
