@@ -6,18 +6,19 @@ import numpy as np
 from parse_trace_file import *
 
 
-def generate_data_file(system, in_file, key, out_file):
+def generate_data_file(system, in_file, key, out_file, time):
     df = pd.read_csv(in_file, index_col=0)
     nrows, ncols = df.shape
 
     for i, j in np.ndindex(df.shape):
         file_name = df.iloc[i, j]
-        _, kernel, _ = file_name.split('/')
+        kernel, _ = file_name.split('/')
+        file_name = "results/" + time + "/" + file_name
         func_name = f'parse_{system}_trace_file'
         val = eval(func_name + '(file_name, key)')
         df.iloc[i, j] = val
 
-    df.to_csv(out_file)
+    df.to_csv("csv/" + time + "/" + out_file)
 
 
 if __name__ == "__main__":
@@ -27,6 +28,7 @@ if __name__ == "__main__":
     parser.add_argument('metric', help="Target metric",
                         choices=['time', 'io_bw', 'total_accessed_edges', 'total_io_bytes', 'io_amp', 'io_skew', 'compute_skew'])
     parser.add_argument('out_file', help="Output CSV file name")
+    parser.add_argument('time', help="test time of script")
     args = parser.parse_args()
 
-    generate_data_file(args.system, args.in_layout_file, args.metric, args.out_file)
+    generate_data_file(args.system, args.in_layout_file, args.metric, args.out_file, args.time)

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-result_dir=result
+cur_time=$(date "+%Y%m%d_%H%M%S")
+# cur_time=20240102_191121
+result_dir=results/${cur_time}
 disks=/mnt/nvme2/blaze
 threads=48
 
@@ -60,5 +62,20 @@ name[6]=yahoo
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bc -d ${name[4]} --start_node ${rts[4]}
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bc -d ${name[5]} --start_node ${rts[5]}
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bc -d ${name[6]} --start_node ${rts[6]}
+
+KCore
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[0]} --maxK 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[1]} --maxK 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[2]} --maxK 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[3]} --maxK 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[4]} --maxK 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[5]} --maxK 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[6]} --maxK 3
+
 # Produce a csv file
-./generate_datafile.py blaze configs/figure7.csv time figure7.csv
+mkdir -p csv/${cur_time}
+./generate_datafile.py blaze configs/figure7.csv time time.csv ${cur_time}
+./generate_datafile.py blaze configs/figure7.csv io_bw io_bw.csv ${cur_time}
+./generate_datafile.py blaze configs/figure7.csv total_accessed_edges total_accessed_edges.csv ${cur_time}
+./generate_datafile.py blaze configs/figure7.csv total_io_bytes total_io_bytes.csv ${cur_time}
+./generate_datafile.py blaze configs/figure7.csv io_amp io_amp.csv ${cur_time}

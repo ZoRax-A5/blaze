@@ -38,7 +38,9 @@ def build_command(args, data_format):
         cmd += ' ' + '-startNode=' + str(args.start_node)
     if args.kernel.startswith("pagerank") or args.kernel.startswith("spmv"):
         cmd += ' ' + '-maxIterations=' + str(args.max_iterations)
-    if not args.kernel.endswith('_sync'):
+    if args.kernel.startswith("kcore"):
+        cmd += ' ' + '-maxK=' + str(args.maxK)
+    if not (args.kernel.endswith('_sync') or args.kernel.startswith("kcore")):
         cmd += ' ' + '-binSpace=' + str(args.bin_size)
         cmd += ' ' + '-binCount=' + str(args.bin_count)
         cmd += ' ' + '-binningRatio=' + str(args.bin_ratio)
@@ -46,7 +48,7 @@ def build_command(args, data_format):
     for edge_file in get_adj_file_names(args.disks, args.dataset, data_format):
         cmd += ' ' + edge_file
 
-    if args.kernel in ('bc', 'bc_sync', 'wcc', 'wcc_sync'):
+    if args.kernel in ('bc', 'bc_sync', 'wcc', 'wcc_sync', 'kcore'):
         cmd += ' ' + '-inIndexFilename=' + get_index_file_name(args.disks, args.dataset, 't' + data_format)
         cmd += ' ' + '-inAdjFilenames'
         for edge_file in get_adj_file_names(args.disks, args.dataset, 't' + data_format):
@@ -74,6 +76,9 @@ if __name__ == "__main__":
     # For PR, SpMV
     parser.add_argument('--max_iterations', default=1000, type=int,
                       help='Max iterations for PageRank and SpMV (default: 1000)')
+    # For kcore
+    parser.add_argument('--maxK', default=10, type=int,
+                      help='Max K for KCore (default: 10)')
 
     # For binning
     parser.add_argument('--bin_size', default=256, type=int,
@@ -123,13 +128,13 @@ if __name__ == "__main__":
     bin_ratio = args.bin_ratio
 
     path = f'{result_dir}/{kernel}'
-    if (args.kernel.startswith('pagerank') or args.kernel.startswith('spmv')) and args.max_iterations > 0 and args.max_iterations < 1000:
-        path += str(args.max_iterations)
+    # if (args.kernel.startswith('pagerank') or args.kernel.startswith('spmv')) and args.max_iterations > 0 and args.max_iterations < 1000:
+    #     path += str(args.max_iterations)
 
     if not os.path.exists(path):
         os.makedirs(path)
 
-    if args.kernel.endswith('_sync'):
+    if args.kernel.endswith('_sync') or args.kernel in ('kcore'):
         result_file = f'{path}/{dataset}_{data_format}_{threads}_{num_disks}.txt'
     else:
         b = int(threads * bin_ratio)
@@ -149,6 +154,8 @@ if __name__ == "__main__":
     if args.dry:
         print(cmd)
         sys.exit()
+
+    cmd = "taskset -c 24-47,72-95 " + cmd
 
     iostat_beg = 'iostat_beg.txt'
     iostat_end = 'iostat_end.txt'

@@ -35,7 +35,7 @@ def parse_blaze_trace_file(file_name, field):
         result['io_bw'] = int(io_bw)
         # io amplification
         if result.get('total_accessed_edges'):
-            result['io_amp'] = round(float(result['total_io_bytes']) / result['total_accessed_edges'] / 4, 1)
+            result['io_amp'] = round(float(result['total_io_bytes']) / result['total_accessed_edges'] / 4, 3)
     except:
         return None
     return result.get(field)
