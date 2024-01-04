@@ -63,7 +63,7 @@ def get_read_bytes_from_iostat(filename):
             words = line.split()
             if not words: continue
             if words[0] == 'nvme2n1':
-                return int(float(words[4]))
+                return int(float(words[5]))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Arguments for running FastGraph")

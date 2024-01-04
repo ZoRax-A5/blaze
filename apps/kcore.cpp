@@ -64,6 +64,7 @@ struct Vertex_Init {
     inline bool operator () (const VID& node) {
         core_numbers[node] = 0;
         degrees[node] = out_graph.GetDegree(node) + in_graph.GetDegree(node);
+        return 1;
     }
 };
 
@@ -108,6 +109,17 @@ int main(int argc, char **argv) {
 
     Graph inGraph;
     inGraph.BuildGraph(inIndexFilename, inAdjFilenames);
+
+#ifdef CACHEMISS
+    pid_t pid = getpid();
+    std::string cache_command = "bash ../scripts/perf.sh " + std::to_string(pid);
+    int cache_res = std::system(cache_command.c_str());
+    if (cache_res == -1) {
+    std::cout << "perf.sh failed" << std::endl;
+    } else {
+    std::cout << "perf.sh succeeded" << std::endl;
+      }
+#endif
 
     uint64_t n = outGraph.NumberOfNodes();
 

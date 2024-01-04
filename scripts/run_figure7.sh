@@ -19,6 +19,8 @@ name[4]=kron29
 name[5]=kron30
 name[6]=yahoo
 
+cd ../build/ && make -j 16 && cd ../scripts/
+
 # BFS
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bfs -d ${name[0]} --start_node ${rts[0]}
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bfs -d ${name[1]} --start_node ${rts[1]}
