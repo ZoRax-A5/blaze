@@ -217,6 +217,7 @@ class EdgeMapExecutor {
         galois::GAccumulator<uint64_t> active_edges;
         vertexMap(frontier,
                 [&](const VID& node) {
+                    assert(_graph.NumberOfNodes() >= node);
                     active_edges += _graph.GetDegree(node);
                 }); 
 

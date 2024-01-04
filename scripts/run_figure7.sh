@@ -63,7 +63,7 @@ name[6]=yahoo
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bc -d ${name[5]} --start_node ${rts[5]}
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bc -d ${name[6]} --start_node ${rts[6]}
 
-KCore
+# KCore
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[0]} --maxK 10
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[1]} --maxK 10
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k kcore -d ${name[2]} --maxK 10

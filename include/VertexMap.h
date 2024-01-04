@@ -11,6 +11,7 @@ void vertexMap(Worklist<VID>* frontier, F&& f) {
         Bitmap *b = frontier->get_dense();
         uint64_t num_words = b->get_num_words();
         uint64_t *words = (uint64_t *)b->ptr();
+        uint64_t limit = b->get_size();
         galois::do_all(galois::iterate(Bitmap::iterator((uint64_t)0), Bitmap::iterator(num_words)),
                         [&](uint64_t pos) {
                             uint64_t word = words[pos];
@@ -19,6 +20,7 @@ void vertexMap(Worklist<VID>* frontier, F&& f) {
                                 for (uint64_t i = 0; i < 64; i++, mask <<= 1) {
                                     if (word & mask) {
                                         uint64_t node = Bitmap::get_pos(pos, i);
+                                        if(node > limit) break;
                                         f(node);
                                     }
                                 }
