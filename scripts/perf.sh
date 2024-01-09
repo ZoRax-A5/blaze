@@ -30,4 +30,4 @@ if [ "$LLC" = true ]; then
 fi
 
 # Get the cache miss performance for pid
-echo "zwx.1005" | sudo -S perf stat -e ${CACHE_ITEM}${CACHE_L1}${CACHE_LLC} -p $pid -o ${result_dir}/${filename}.cachemiss &
+echo "zwx.1005" | perf stat -e ${CACHE_ITEM}${CACHE_L1}${CACHE_LLC} -p $pid -o ${result_dir}/${filename}.cachemiss &

@@ -164,8 +164,8 @@ class EdgeMapExecutor {
         // general info
         std::string info;
         char buf[1024];
-        sprintf(buf, "# EDGEMAP %4d : %12lu nodes %9s, %12lu edges, %12lu bytes, %8.5f sec, %8.5f sec",
-                round, _num_activated_nodes, frontier_type_name.c_str(), _num_activated_edges, io_bytes, _compute_time, _io_time);
+        sprintf(buf, "# EDGEMAP %4d : %12lu nodes %9s, %12lu edges, %12lu bytes, %8.3f %% utilize, %8.5f sec, %8.5f sec",
+                round, _num_activated_nodes, frontier_type_name.c_str(), _num_activated_edges, io_bytes, 400.0 * _num_activated_edges / io_bytes, _compute_time, _io_time);
         info.append(buf);
 
         std::cout << info;
