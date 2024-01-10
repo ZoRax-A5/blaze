@@ -17,6 +17,7 @@
 #define MB      (1024*kB)
 #define GB      (1024*MB)
 #define CACHEMISS
+#define PAGECACHE
 
 // Align
 #define ALIGN_UPTO(size, align) ((((uint64_t)size)+(align)-1u)&~((align)-1u))

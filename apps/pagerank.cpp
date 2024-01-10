@@ -269,6 +269,18 @@ struct PR_Reset {
 
 int main(int argc, char **argv) {
     AgileStart(argc, argv);
+
+#ifdef PAGECACHE
+    pid_t ppid = getpid();
+    std::string pcache_command = "bash ../scripts/pagecache.sh " + std::to_string(ppid);
+    int pcache_res = std::system(pcache_command.c_str());
+    if (pcache_res == -1) {
+    std::cout << "pagecache.sh failed" << std::endl;
+    } else {
+    std::cout << "pagecache.sh succeeded" << std::endl;
+      }
+#endif
+
     Runtime runtime(numComputeThreads, numIoThreads, ioBufferSize * MB);
     runtime.initBinning(binningRatio);
 
@@ -323,7 +335,9 @@ int main(int argc, char **argv) {
 #endif
 
         vertexMap(outGraph, PR_TotalDelta(data, totalDelta));
-        if (totalDelta.reduce() < epsilon2) break;
+        float L1_norm = totalDelta.reduce();
+        printf("L1 norm: %.5f\n", L1_norm);
+        if (L1_norm < epsilon2) break;
         totalDelta.reset();
 
 #ifdef LIGRA_ALIGN

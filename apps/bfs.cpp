@@ -79,6 +79,18 @@ struct BFS_Vertex_Init {
 
 int main(int argc, char **argv) {
     AgileStart(argc, argv);
+
+#ifdef PAGECACHE
+    pid_t ppid = getpid();
+    std::string pcache_command = "bash ../scripts/pagecache.sh " + std::to_string(ppid);
+    int pcache_res = std::system(pcache_command.c_str());
+    if (pcache_res == -1) {
+    std::cout << "pagecache.sh failed" << std::endl;
+    } else {
+    std::cout << "pagecache.sh succeeded" << std::endl;
+      }
+#endif
+
     Runtime runtime(numComputeThreads, numIoThreads, ioBufferSize * MB);
     runtime.initBinning(binningRatio);
 

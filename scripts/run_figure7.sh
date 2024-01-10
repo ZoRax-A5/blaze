@@ -31,13 +31,13 @@ cd ../build/ && make -j 16 && cd ../scripts/
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k bfs -d ${name[6]} --start_node ${rts[6]}
 
 # PageRank 
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[0]} --max_iterations 3
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[1]} --max_iterations 3
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[2]} --max_iterations 3
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[3]} --max_iterations 3
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[4]} --max_iterations 3
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[5]} --max_iterations 3
-./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[6]} --max_iterations 3
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[0]} --max_iterations 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[1]} --max_iterations 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[2]} --max_iterations 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[3]} --max_iterations 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[4]} --max_iterations 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[5]} --max_iterations 10
+./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k pagerank -d ${name[6]} --max_iterations 10
 
 # WCC
 ./run.py --result_dir ${result_dir} --disks ${disks} -t ${threads} -k wcc -d ${name[0]}
