@@ -62,6 +62,12 @@ class ComputeWorker {
         _out_frontier = nullptr;
     }
 
+#ifdef PAGE_TRACE
+    PageTracer getTracer() const {
+        return _pageTracer;
+    }
+#endif
+
  private:
     template <typename Gr, typename Func>
     void processFetchedPages(Gr& graph, Func& func, IoItem& item, Synchronization& sync) {
@@ -86,6 +92,10 @@ class ComputeWorker {
 
         const uint64_t page_start = (uint64_t)pid * PAGE_SIZE;
         const uint64_t page_end = page_start + PAGE_SIZE;
+
+#ifdef PAGE_TRACE
+        _pageTracer.insert(pid);
+#endif
 
         VID vid = vid_start;
         while (vid <= vid_end) {
@@ -141,6 +151,11 @@ class ComputeWorker {
     Worklist<VID>*          _out_frontier;
     double                  _time;
     uint64_t                _num_processed_pages;
+    
+#ifdef PAGE_TRACE
+    PageTracer _pageTracer;
+#endif
+
 };
 
 } // namespace blaze

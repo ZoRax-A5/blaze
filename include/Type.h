@@ -7,6 +7,8 @@
 #include "Worklist.h"
 #include "galois/substrate/SimpleLock.h"
 
+// #define PAGE_TRACE
+
 typedef uint32_t VID;
 #define VID_BITS 2
 #define EDGE_WIDTH_BITS 2
@@ -53,5 +55,10 @@ inline bool use_prop_blocking(const FLAGS& flags) {
 }
 
 enum ComputeWorkerRole { NORMAL, BIN, ACCUMULATE };
+
+#ifdef PAGE_TRACE
+#include <set> 
+using PageTracer = std::set<PAGEID>; 
+#endif
 
 #endif // BLAZE_TYPES_H

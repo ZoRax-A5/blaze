@@ -26,6 +26,14 @@ class ComputeEngine {
     }
 
     ~ComputeEngine() {
+#ifdef PAGE_TRACE
+        PageTracer total;
+        for (auto worker: _workers) {
+            PageTracer subTracer = worker->getTracer();
+            total.insert(subTracer.begin(), subTracer.end());
+        }
+        printf("Compute: Total accessed pages = %ld\n", total.size());
+#endif
     }
 
     template <typename Gr>

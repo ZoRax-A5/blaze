@@ -34,6 +34,14 @@ class PBEngine {
     }
 
     ~PBEngine() {
+#ifdef PAGE_TRACE
+        PageTracer total;
+        for (auto worker: _scatter_workers) {
+            PageTracer subTracer = worker->getTracer();
+            total.insert(subTracer.begin(), subTracer.end());
+        }
+        printf("PB: Total accessed pages = %ld\n", total.size());
+#endif
     }
 
     template <typename Gr>

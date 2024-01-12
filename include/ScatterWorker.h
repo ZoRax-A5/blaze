@@ -83,6 +83,12 @@ class ScatterWorker {
         return _id;
     }
 
+#ifdef PAGE_TRACE
+    PageTracer getTracer() const {
+        return _pageTracer;
+    }
+#endif
+
  private:
     template <typename Gr, typename Func>
     bool applyFunction(Gr& graph, Func& func, const VID& vid, const uint64_t page_start, const uint64_t page_end, char *buffer) {
@@ -141,6 +147,10 @@ class ScatterWorker {
         const uint64_t page_start = (uint64_t)pid * PAGE_SIZE;
         const uint64_t page_end = page_start + PAGE_SIZE;
 
+#ifdef PAGE_TRACE
+        _pageTracer.insert(pid);
+#endif
+
         VID vid = vid_start;
         while (vid <= vid_end) {
             applyFunction(graph, func, vid, page_start, page_end, buffer);
@@ -157,6 +167,11 @@ class ScatterWorker {
     Bins*                   _bins;
     double                  _time;
     uint64_t                _num_processed_pages;
+
+#ifdef PAGE_TRACE
+    PageTracer _pageTracer;
+#endif
+
 };
 
 } // namespace blaze
