@@ -34,7 +34,7 @@ def get_adj_file_names(disks, dataset, data_format):
 def build_command(args, data_format):
     cmd = BLAZE_BINARY_PATH + "/" + args.kernel
     cmd += ' ' + '-computeWorkers=' + str(args.threads)
-    if args.kernel.startswith('bfs') or args.kernel.startswith('bc'):
+    if args.kernel.startswith('bfs') or args.kernel.startswith('bc') or args.kernel.startswith('BellmanFord'):
         cmd += ' ' + '-startNode=' + str(args.start_node)
     if args.kernel.startswith("pagerank") or args.kernel.startswith("spmv"):
         cmd += ' ' + '-maxIterations=' + str(args.max_iterations)
